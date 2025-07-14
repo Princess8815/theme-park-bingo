@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theme Park Bingo – Game</title>
+  <link rel="stylesheet" href="../styles/game.css" />
+</head>
+<body>
+
+  <div class="game-container">
+    <h1>🎢 Theme Park Bingo Game 🎠</h1>
+
+    <div class="bingo-table-container">
+      <table class="bingo-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>B</th>
+            <th>I</th>
+            <th>N</th>
+            <th>G</th>
+            <th>O</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 5 rows -->
+          <tr><th>1</th><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><th>2</th><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><th>3</th><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><th>4</th><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><th>5</th><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <div class="card-buttons">
+        <button class="card-button perks">Perks</button>
+        <button class="card-button challenges">Challenges</button>
+        <button class="card-button punishments">Punishments</button>
+        <button class="card-button hand">Hand</button>
+        <button class="new-card-button">New Card</button>
+      </div>
+    </div>
+    </div>
+
+
+
+  <button id="rulesButton" class="rules-button">Rules</button>
+
+<div id="rulesModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <h2>🎮 Six Flags Secret Quest – Official Rules (Final)</h2>
+    <p>
+      🔢 <strong>Setup</strong><br>
+      Each player has a secret bingo card containing:<br>
+      • 5 roller coasters<br>
+      • 10 flat or water rides<br>
+      • 10 specific challenge squares (each named with a unique challenge)<br>
+      No one sees their own card.<br>
+      Each player is assigned to track another player’s card.
+    </p>
+    <p>
+      ▶️ <strong>How to Play</strong><br>
+      1. Any player chooses a ride or attraction for the group.<br>
+      Only players who actually ride it draw cards.<br>
+      The ride is marked off on everyone’s card if it appears.<br><br>
+      2. After riding:<br>
+      Each rider draws a Challenge Card from the deck.<br>
+      You can only hold 1 challenge at a time.<br>
+      You must complete it before riding again.<br>
+      If you draw a new challenge while holding one, discard the new draw without looking.<br>
+      If the ride was a roller coaster, each rider also draws a Perk Card.<br><br>
+      3. Challenge Squares on Bingo Cards:<br>
+      Each challenge square has a specific challenge listed (e.g. "Find something purple", "Compliment a stranger").<br>
+      When you draw a Challenge Card from the deck, it has a challenge name matching those possible on bingo cards.<br>
+      Completing that specific challenge allows your tracker to mark off that exact square on your bingo card if it is present.<br>
+      If your drawn challenge does not exist on your card, completing it does not clear any square but is still required to continue.<br><br>
+      4. Punishment Challenges are mixed into the challenge/perk deck:<br>
+      Must be completed immediately before continuing (e.g. speak in ride sound effects for 5 mins).
+    </p>
+    <p>
+      🎯 <strong>Winning</strong><br>
+      The tracker announces when their assigned player achieves bingo.<br>
+      First to bingo wins the game.<br><br>
+      Some rules may be adjusted based on template.
+    </p>
+  </div>
+</div>
+
+
+  <script>
+    function loadTemplateJS(template) {
+      let script = document.createElement('script');
+
+      if (template === 'sfga2025') {
+        script.src = '../script/6-flags.js';
+      } else if (template === 'mtolympus') {
+        script.src = '../script/mt-olympus.js';
+      } else {
+        console.error('Unknown template:', template);
+        return;
+      }
+
+      script.onload = () => {
+        console.log(`${template} script loaded.`);
+      };
+
+      document.body.appendChild(script);
+
+        const rulesModal = document.getElementById('rulesModal');
+        const rulesButton = document.getElementById('rulesButton');
+        const closeButton = document.querySelector('.close-button');
+
+        rulesButton.onclick = function() {
+        rulesModal.style.display = 'block';
+        }
+
+        closeButton.onclick = function() {
+        rulesModal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+        if (event.target == rulesModal) {
+            rulesModal.style.display = 'none';
+        }
+    }
+
+    }
+
+    // Retrieve selected template from localStorage
+    const template = localStorage.getItem('selectedTemplate');
+    loadTemplateJS(template);
+  </script>
+
+</body>
+</html>
+
