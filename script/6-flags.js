@@ -139,6 +139,8 @@ const possiblePunishments = [
     "Try to high five every person you walk past for 3 minutes"
   ];
 
+const discard = [];
+
 function generateBingoCard() {
     // Check if bingo card already exists in localStorage
     let savedCard = JSON.parse(localStorage.getItem('bingoCard'));
@@ -197,6 +199,14 @@ function populateBingoTable(bingoCard) {
       }
     }
   }
+
+  function shuffle(deck, storageKey = 'shuffledDeck') {
+    const shuffled = [...deck].sort(() => Math.random() - 0.5);
+    localStorage.setItem(storageKey, JSON.stringify(shuffled));
+    console.log(`${storageKey} shuffled and saved to localStorage.`);
+    return shuffled;
+  }
+  
   
   // Generate or load bingo card
   const myBingoCard = generateBingoCard();
