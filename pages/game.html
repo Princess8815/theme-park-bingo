@@ -1,137 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Theme Park Bingo – Game</title>
-  <link rel="stylesheet" href="../styles/game.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Park Bingo – Game</title>
+    <link rel="stylesheet" href="/styles/game.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <h1>🎢 Theme Park Bingo Game 🎠</h1>
 
-  <div class="game-container">
-    <h1>🎢 Theme Park Bingo Game 🎠</h1>
+      <!-- Add multiplayer status display -->
+      <div id="gameStatus" class="game-status">
+        <span id="connectionStatus">Connecting...</span>
+        <span id="gameCode" style="display: none"></span>
+        <span id="playerCount" style="display: none"></span>
+      </div>
 
-    <div class="bingo-table-container">
-      <table class="bingo-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>B</th>
-            <th>I</th>
-            <th>N</th>
-            <th>G</th>
-            <th>O</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- 5 rows -->
-          <tr><th>1</th><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><th>2</th><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><th>3</th><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><th>4</th><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><th>5</th><td></td><td></td><td></td><td></td><td></td></tr>
-        </tbody>
-      </table>
-      <div class="card-buttons">
-        <button class="card-button perks">Perks</button>
-        <button class="card-button challenges">Challenges</button>
-        <button class="card-button punishments">Punishments</button>
-        <button class="card-button hand">Hand</button>
-        <button class="new-card-button">New Card</button>
+      <div class="bingo-card-container">
+        <div class="bingo-header">
+          <div class="header-cell"></div>
+          <div class="header-cell">B</div>
+          <div class="header-cell">I</div>
+          <div class="header-cell">N</div>
+          <div class="header-cell">G</div>
+          <div class="header-cell">O</div>
+        </div>
+        <div class="bingo-grid" id="bingoGrid">
+          <!-- Grid items will be populated by JavaScript -->
+        </div>
+        <div class="card-buttons">
+          <button class="card-button perks">Perks</button>
+          <button class="card-button challenges">Challenges</button>
+          <button class="card-button punishments">Punishments</button>
+          <button class="card-button hand">Hand</button>
+          <button class="new-card-button">New Card</button>
+        </div>
       </div>
     </div>
+
+    <button id="rulesButton" class="rules-button">Rules</button>
+
+    <div id="rulesModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>🎮 Six Flags Secret Quest – Official Rules (Final)</h2>
+        <p>
+          🔢 <strong>Setup</strong><br />
+          Each player has a secret bingo card containing:<br />
+          • 5 roller coasters<br />
+          • 10 flat or water rides<br />
+          • 10 specific challenge squares (each named with a unique
+          challenge)<br />
+          No one sees their own card.<br />
+          Each player is assigned to track another player’s card.
+        </p>
+        <p>
+          ▶️ <strong>How to Play</strong><br />
+          1. Any player chooses a ride or attraction for the group.<br />
+          Only players who actually ride it draw cards.<br />
+          The ride is marked off on everyone’s card if it appears.<br /><br />
+          2. After riding:<br />
+          Each rider draws a Challenge Card from the deck.<br />
+          You can only hold 1 challenge at a time.<br />
+          You must complete it before riding again.<br />
+          If you draw a new challenge while holding one, discard the new draw
+          without looking.<br />
+          If the ride was a roller coaster, each rider also draws a Perk
+          Card.<br /><br />
+          3. Challenge Squares on Bingo Cards:<br />
+          Each challenge square has a specific challenge listed (e.g. "Find
+          something purple", "Compliment a stranger").<br />
+          When you draw a Challenge Card from the deck, it has a challenge name
+          matching those possible on bingo cards.<br />
+          Completing that specific challenge allows your tracker to mark off
+          that exact square on your bingo card if it is present.<br />
+          If your drawn challenge does not exist on your card, completing it
+          does not clear any square but is still required to continue.<br /><br />
+          4. Punishment Challenges are mixed into the challenge/perk deck:<br />
+          Must be completed immediately before continuing (e.g. speak in ride
+          sound effects for 5 mins).
+        </p>
+        <p>
+          🎯 <strong>Winning</strong><br />
+          The tracker announces when their assigned player achieves bingo.<br />
+          First to bingo wins the game.<br /><br />
+          Some rules may be adjusted based on template.
+        </p>
+      </div>
     </div>
 
-
-
-  <button id="rulesButton" class="rules-button">Rules</button>
-
-<div id="rulesModal" class="modal">
-  <div class="modal-content">
-    <span class="close-button">&times;</span>
-    <h2>🎮 Six Flags Secret Quest – Official Rules (Final)</h2>
-    <p>
-      🔢 <strong>Setup</strong><br>
-      Each player has a secret bingo card containing:<br>
-      • 5 roller coasters<br>
-      • 10 flat or water rides<br>
-      • 10 specific challenge squares (each named with a unique challenge)<br>
-      No one sees their own card.<br>
-      Each player is assigned to track another player’s card.
-    </p>
-    <p>
-      ▶️ <strong>How to Play</strong><br>
-      1. Any player chooses a ride or attraction for the group.<br>
-      Only players who actually ride it draw cards.<br>
-      The ride is marked off on everyone’s card if it appears.<br><br>
-      2. After riding:<br>
-      Each rider draws a Challenge Card from the deck.<br>
-      You can only hold 1 challenge at a time.<br>
-      You must complete it before riding again.<br>
-      If you draw a new challenge while holding one, discard the new draw without looking.<br>
-      If the ride was a roller coaster, each rider also draws a Perk Card.<br><br>
-      3. Challenge Squares on Bingo Cards:<br>
-      Each challenge square has a specific challenge listed (e.g. "Find something purple", "Compliment a stranger").<br>
-      When you draw a Challenge Card from the deck, it has a challenge name matching those possible on bingo cards.<br>
-      Completing that specific challenge allows your tracker to mark off that exact square on your bingo card if it is present.<br>
-      If your drawn challenge does not exist on your card, completing it does not clear any square but is still required to continue.<br><br>
-      4. Punishment Challenges are mixed into the challenge/perk deck:<br>
-      Must be completed immediately before continuing (e.g. speak in ride sound effects for 5 mins).
-    </p>
-    <p>
-      🎯 <strong>Winning</strong><br>
-      The tracker announces when their assigned player achieves bingo.<br>
-      First to bingo wins the game.<br><br>
-      Some rules may be adjusted based on template.
-    </p>
-  </div>
-</div>
-
-
-  <script>
-    function loadTemplateJS(template) {
-      let script = document.createElement('script');
-
-      if (template === 'sfga2025') {
-        script.src = '../script/6-flags.js';
-      } else if (template === 'mtolympus') {
-        script.src = '../script/mt-olympus.js';
-      } else {
-        console.error('Unknown template:', template);
-        return;
+    <!-- Firebase configuration -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <script src="/script/database.js"></script>
+    <script>
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: 'AIzaSyASzLzGNP_099SC4Qr9szdxyuFArpsgv1A',
+        authDomain: 'theme-park-bingo.firebaseapp.com',
+        databaseURL: 'https://theme-park-bingo-default-rtdb.firebaseio.com',
+        projectId: 'theme-park-bingo',
+        storageBucket: 'theme-park-bingo.firebasestorage.app',
+        messagingSenderId: '826233039245',
+        appId: '1:826233039245:web:0e23020d5a3f2f45bd35c4',
+        measurementId: 'G-M64J9321TE',
       }
 
-      script.onload = () => {
-        console.log(`${template} script loaded.`);
-      };
+      // Initialize Firebase
+      let database = null
+      try {
+        firebase.initializeApp(firebaseConfig)
+        database = new BingoDatabase()
+        console.log('Firebase initialized successfully')
+        document.getElementById('connectionStatus').textContent = 'Online Mode'
+      } catch (error) {
+        console.log(
+          'Firebase initialization failed, using offline mode:',
+          error
+        )
+        document.getElementById('connectionStatus').textContent = 'Offline Mode'
+      }
 
-      document.body.appendChild(script);
+      async function initializeGame() {
+        const urlParams = new URLSearchParams(window.location.search)
+        const template = urlParams.get('template') || 'sfga2025'
+        const gameCode = urlParams.get('game')
 
-        const rulesModal = document.getElementById('rulesModal');
-        const rulesButton = document.getElementById('rulesButton');
-        const closeButton = document.querySelector('.close-button');
-
-        rulesButton.onclick = function() {
-        rulesModal.style.display = 'block';
+        // Try to join existing game or create new one
+        if (database && !database.isOffline) {
+          try {
+            const gameInfo = await database.createOrJoinGame(gameCode)
+            document.getElementById(
+              'gameCode'
+            ).textContent = `Game: ${gameInfo.gameId}`
+            document.getElementById('gameCode').style.display = 'inline'
+            document.getElementById(
+              'playerCount'
+            ).textContent = `Players: ${gameInfo.playerCount}`
+            document.getElementById('playerCount').style.display = 'inline'
+          } catch (error) {
+            console.log('Failed to join/create game, playing offline:', error)
+          }
         }
 
-        closeButton.onclick = function() {
-        rulesModal.style.display = 'none';
+        // Load the appropriate template
+        loadTemplateJS(template)
+      }
+
+      function loadTemplateJS(template) {
+        let script = document.createElement('script')
+
+        if (template === 'sfga2025') {
+          script.src = '/script/6-flags.js'
+        } else if (template === 'mtolympus') {
+          script.src = '/script/mt-olympus.js'
+        } else {
+          console.error('Unknown template:', template)
+          return
         }
 
-        window.onclick = function(event) {
+        script.onload = () => {
+          console.log(`${template} script loaded.`)
+          // Initialize the game with database if available
+          if (typeof initializeBingoGame === 'function') {
+            initializeBingoGame(database)
+          }
+        }
+
+        document.body.appendChild(script)
+      }
+
+      // Rules modal logic
+      const rulesModal = document.getElementById('rulesModal')
+      const rulesButton = document.getElementById('rulesButton')
+      const closeButton = document.querySelector('.close-button')
+
+      rulesButton.onclick = function () {
+        rulesModal.style.display = 'block'
+      }
+
+      closeButton.onclick = function () {
+        rulesModal.style.display = 'none'
+      }
+
+      window.onclick = function (event) {
         if (event.target == rulesModal) {
-            rulesModal.style.display = 'none';
+          rulesModal.style.display = 'none'
         }
-    }
+      }
 
-    }
-
-    // Retrieve selected template from localStorage
-    const template = localStorage.getItem('selectedTemplate');
-    loadTemplateJS(template);
-  </script>
-
-</body>
+      // Start the game initialization
+      initializeGame()
+    </script>
+  </body>
 </html>
 

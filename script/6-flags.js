@@ -200,12 +200,7 @@ function populateBingoTable(bingoCard) {
     }
   }
 
-  function shuffle(deck, storageKey = 'shuffledDeck') {
-    const shuffled = [...deck].sort(() => Math.random() - 0.5);
-    localStorage.setItem(storageKey, JSON.stringify(shuffled));
-    console.log(`${storageKey} shuffled and saved to localStorage.`);
-    return shuffled;
-  }
+
   
   
   // Generate or load bingo card
@@ -213,6 +208,14 @@ function populateBingoTable(bingoCard) {
   
   // Populate the table visually
   populateBingoTable(myBingoCard);
+
+
+  function shuffle(deck, storageKey = 'shuffledDeck') {
+    const shuffled = [...deck].sort(() => Math.random() - 0.5);
+    localStorage.setItem(storageKey, JSON.stringify(shuffled));
+    console.log(`${storageKey} shuffled and saved to localStorage.`);
+    return shuffled;
+  }
   
   
   
