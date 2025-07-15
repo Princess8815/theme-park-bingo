@@ -160,7 +160,7 @@
     color: black;
   } 
   
-  @media (max-width: 600px) {
+  @media (max-width: 0px) {
     html, body {
       width: 100%;
       overflow-x: hidden;
